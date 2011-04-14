@@ -10,20 +10,8 @@
 
 <?php
 
-function action_add () {
-    echo 'add';
-}
-
-function action_edit () {
-    echo 'edit';
-}
-
-function action_del () {
-    echo 'del';
-}
-
 if (isset ($_GET['action']) && in_array ($_GET['action'], array ('add', 'edit', 'del', ))) {
-    call_user_func ('action_'. $_GET['action']);
+    require_once 'action_'. $_GET['action'] .'.php';
 }
 
 ?>

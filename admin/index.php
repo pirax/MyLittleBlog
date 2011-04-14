@@ -15,7 +15,7 @@ ob_start ();
 <?php
 
 if (isset ($_SESSION['msg'])) {
-    echo "<div>$_SESSION['msg']</div>\n";
+    echo '<div>'. $_SESSION['msg'] ."</div>\n";
     unset ($_SESSION['msg']);
 }
 

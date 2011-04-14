@@ -2,6 +2,7 @@
 
 $subject = '';
 $content = '';
+$errors  = array ();
 
 if (isset ($_POST['subject'])) {
     $subject = $_POST['subject'];

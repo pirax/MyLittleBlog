@@ -19,6 +19,7 @@ function action_edit () {
 }
 
 function action_del () {
+    echo 'del';
 }
 
 if (isset ($_GET['action']) && in_array ($_GET['action'], array ('add', 'edit', 'del', ))) {

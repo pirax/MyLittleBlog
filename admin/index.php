@@ -1,4 +1,8 @@
-<html>
+<?php
+
+ob_start ();
+
+?><html>
     <head>
         <title>MyLittleBlog</title>
     </head>
@@ -13,6 +17,8 @@
 if (isset ($_GET['action']) && in_array ($_GET['action'], array ('add', 'edit', 'del', ))) {
     require_once 'action_'. $_GET['action'] .'.php';
 }
+
+ob_flush ();
 
 ?>
 

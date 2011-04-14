@@ -15,6 +15,7 @@ function action_add () {
 }
 
 function action_edit () {
+    echo 'edit';
 }
 
 function action_del () {

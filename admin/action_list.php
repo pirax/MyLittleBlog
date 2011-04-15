@@ -1,4 +1,4 @@
 <?php
 
-print_r (action_list ());
+print_r (entry_list ());
 

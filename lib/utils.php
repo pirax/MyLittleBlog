@@ -37,7 +37,16 @@ function entry_del ($entry) {
     return unlink ($entry);
 }
 
-function entry_list ($mask=null) {
+function entries_sorter ($field) {
+    return create_function ('$a, $b', "
+        if (\$a['$field'] == \$b['$field']) {
+            return 0;
+        }
+        return \$a['$field'] < \$b['$field'] ? 1 : -1;
+    ");
+}
+
+function entry_list ($mask=null, $sort_by='slug') {
     $list = glob (DB_PATH. (!is_null ($mask) ? "/$mask.txt" : '/*.txt'), GLOB_MARK);
     $ret = array ();
     foreach ($list as $entry_path) {
@@ -49,6 +58,10 @@ function entry_list ($mask=null) {
             'date_add'  => filectime ($entry_path),
             'date_mod'  => filemtime ($entry_path),
         );
+    }
+
+    if ($sort_by != 'slug') {
+        $ret = uasort ($ret, entries_sorter ($sort_by));
     }
 
     return $ret;

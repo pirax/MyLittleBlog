@@ -2,11 +2,10 @@
 
 if (!isset ($_REQUEST['slug'])) {
     $_SESSION['msg'] = 'Brak identyfikatora wpisu';
-    header ('Location: /');
+    header ('Location: /admin/');
     exit;
 }
 
-$entry = null;
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $entry = array (
         'subject'   => $_POST['subject'],
@@ -16,9 +15,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 else {
     $entry = entry_read ($_REQUEST['slug']);
 }
+
 if (!$entry) {
     $_SESSION['msg'] = 'Nie znaleziono wpisu o identyfikatorze "'. html ($_REQUEST['slug']) .'"';
-    header ('Location: /');
+    header ('Location: /admin/');
     exit;
 }
 
@@ -65,6 +65,7 @@ foreach ($errors as $error) {
 <div>
 <label for="subject"><input type="text" name="subject" id="subject" value="<?php echo $subject; ?>" /></label>
 <label for="content"><textarea name="content" id="content"><?php echo $content; ?></textarea></label>
+<input type="hidden" name="slug" value="<?php html ($_REQUEST['slug']) ?>" />
 <input type="submit" name="save" value="Zapisz" />
 </div>
 </form>

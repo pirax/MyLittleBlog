@@ -43,7 +43,7 @@ if (isset ($_POST['save'])) {
     }
 
     if (!count ($errors)) {
-        if (entry_add ($subject, $content)) {
+        if (entry_edit ($_REQUEST['slug'], $subject, $content)) {
             $_SESSION['msg'] = 'Post zapisany poprawnie';
             header ('Location: /admin/');
             exit;
@@ -69,4 +69,3 @@ foreach ($errors as $error) {
 <input type="submit" name="save" value="Zapisz" />
 </div>
 </form>
-

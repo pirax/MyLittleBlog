@@ -1,7 +1,14 @@
 <?php
 
 ob_start ();
-session_start ();
+if (!ini_get ('session.auto_start')) {
+    session_start ();
+}
+
+define ('ROOT', basename (__FILE__));
+define ('DB_PATH', ROOT . '/db/');
+
+require ROOT . '/lib/utils.php';
 
 ?><html>
     <head>

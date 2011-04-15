@@ -18,9 +18,10 @@ foreach ($entries as $entry) {
         <td>%s</td>
         <td><a href='/?action=entry_edit&slug=%s'>edytuj</a></td>
     </tr>",
+
         $i,
         $entry['subject'],
-        $entry['slug'],
+        $entry['slug']
     );
 }
 

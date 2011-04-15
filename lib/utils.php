@@ -1,14 +1,29 @@
 <?php
 
-function slug ($string) {
+function slug ($string, $non_uniq=0) {
     $string = strtr ($string, "ążśźęćńłóĄŻŚŹĘĆŃŁÓ \t\r\n", 'azszecnloAZSZECNLO____');
     $string = preg_replace ('/_{1,}/', '_', $string);
     $string = preg_replace ('/[^a-zA-Z0-9_,.-]/', '', $string);
+
+    if (!$non_uniq) {
+        $i = '';
+        while (file_exists (DB_PATH . $string . $i. '.txt')) {
+            ++$i;
+        }
+        if (is_numeric ($i) && $i > 0) {
+            $string .= $i;
+        }
+    }
+
     return $string;
 }
 
 function fname_encode ($subject) {
     return slug ($subject);
+}
+
+function slug_to_path ($slug) {
+    return DB_PATH . $slug . '.txt';
 }
 
 function entry_add ($subject, $content) {
@@ -17,24 +32,30 @@ function entry_add ($subject, $content) {
     return file_put_contents ($path, $subject ."\n". $content);
 }
 
-function entry_edit ($entry, $subject, $content) {
-    if (!file_put_contents ($entry, $subject ."\n". $content)) {
+function entry_edit ($slug, $subject, $content) {
+    $path = slug_to_path ($slug);
+    if (!file_put_contents ($path, $subject ."\n". $content)) {
         return false;
     }
 
     $fname = fname_encode ($subject);
     $path  = DB_PATH . '/' . $fname .'.txt';
-    return rename ($entry, $path);
+    return rename ($path, $path);
 }
 
-function entry_read ($entry) {
-    $data = file_get_contents ($entry);
+function entry_read ($slug) {
+    $path = slug_to_path ($slug);
+    if (!file_exists ($path)) {
+        return;
+    }
+    $data = file_get_contents ($path);
     list ($subject, $content) = explode ("\n", $data, 2);
     return array ('subject' => $subject, 'content', $content);
 }
 
-function entry_del ($entry) {
-    return unlink ($entry);
+function entry_del ($slug) {
+    $path = slug_to_path ($slug);
+    return unlink ($path);
 }
 
 function entries_sorter ($field) {
@@ -57,6 +78,7 @@ function entry_list ($mask=null, $sort_by='slug') {
             'slug'      => substr (basename ($entry_path), 0, -4),
             'date_add'  => filectime ($entry_path),
             'date_mod'  => filemtime ($entry_path),
+            'size'      => filesize ($entry_path),
         );
     }
 

@@ -30,6 +30,9 @@ if (isset ($_SESSION['msg'])) {
 if (isset ($_GET['action']) && in_array ($_GET['action'], array ('add', 'edit', 'del', ))) {
     require_once 'action_'. $_GET['action'] .'.php';
 }
+else {
+    require_once 'action_list.php';
+}
 
 ob_flush ();
 

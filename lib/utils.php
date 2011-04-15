@@ -29,7 +29,7 @@ function entry_edit ($entry, $subject, $content) {
 
 function entry_read ($entry) {
     $data = file_get_contents ($entry);
-    list ($subject, $content) = explode ($data, 2);
+    list ($subject, $content) = explode ("\n", $data, 2);
     return array ('subject' => $subject, 'content', $content);
 }
 

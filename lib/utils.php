@@ -93,9 +93,13 @@ function entry_list ($mask=null, $sort_by='slug') {
     }
 
     if ($reverse) {
-        $ret  =array_reverse ($ret);
+        $ret = array_reverse ($ret);
     }
 
     return $ret;
+}
+
+function html ($string) {
+    return htmlspecialchars ($string, ENT_QUOTES, 'UTF-8');
 }
 

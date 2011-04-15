@@ -13,7 +13,7 @@ function fname_encode ($subject) {
 
 function entry_add ($subject, $content) {
     $fname = fname_encode ($subject);
-    $path  = DB_PATH . '/' . $fname;
+    $path  = DB_PATH . '/' . $fname .'.txt';
     return file_put_contents ($path, $subject ."\n". $content);
 }
 
@@ -23,7 +23,7 @@ function entry_edit ($entry, $subject, $content) {
     }
 
     $fname = fname_encode ($subject);
-    $path  = DB_PATH . '/' . $fname;
+    $path  = DB_PATH . '/' . $fname .'.txt';
     return rename ($entry, $path);
 }
 

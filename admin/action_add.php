@@ -21,9 +21,14 @@ if (isset ($_POST['save'])) {
     }
 
     if (!count ($errors)) {
-        $_SESSION['msg'] = 'Post zapisany poprawnie';
-        header ('Location: /admin/');
-        exit;
+        if (entry_add ($subject, $content)) {
+            $_SESSION['msg'] = 'Post zapisany poprawnie';
+            header ('Location: /admin/');
+            exit;
+        }
+        else {
+            $errors[] = 'Nie udało się zapisać wpisu';
+        }
     }
 }
 

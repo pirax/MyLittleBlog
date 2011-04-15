@@ -9,7 +9,7 @@
 <tbody>
 <?php
 
-$entries = entry_list ();
+$entries = entry_list (null, 'date_add');
 $i = 0;
 
 foreach ($entries as $entry) {
@@ -23,7 +23,7 @@ foreach ($entries as $entry) {
 
         ++$i,
         $entry['subject'],
-        $entry['date_add'],
+        strftime ('%Y-%m-%d %H:%M:%S', $entry['date_add']),
         $entry['slug']
     );
 }

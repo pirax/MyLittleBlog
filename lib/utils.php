@@ -49,7 +49,7 @@ function entry_read ($slug) {
     }
     $data = file_get_contents ($path);
     list ($subject, $content) = explode ("\n", $data, 2);
-    return array ('subject' => $subject, 'content', $content);
+    return array ('subject' => $subject, 'content' => $content);
 }
 
 function entry_del ($slug) {

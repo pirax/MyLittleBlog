@@ -67,7 +67,7 @@ function entry_list ($mask=null, $sort_by='slug') {
     }
 echo entries_sorter ('date_add');
     if ($sort_by != 'slug') {
-        $ret = uasort ($ret, entries_sorter ($sort_by));
+        uasort ($ret, entries_sorter ($sort_by));
     }
 
     return $ret;

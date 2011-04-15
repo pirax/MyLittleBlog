@@ -38,7 +38,7 @@ function entry_del ($entry) {
 }
 
 function entry_list ($mask=null) {
-    $list = glob (DB_PATH. (is_null ($mask) ? "/$mask" : '/*.txt'), GLOB_MARK);
+    $list = glob (DB_PATH. (!is_null ($mask) ? "/$mask.txt" : '/*.txt'), GLOB_MARK);
     $ret = array ();
     foreach ($list as $entry_path) {
         $entry = entry_read ($entry_path);

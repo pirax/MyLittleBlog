@@ -19,7 +19,7 @@ function slug ($string, $non_uniq=false) {
 }
 
 function fname_encode ($subject) {
-    return slug ($subject);
+    return slug ($subject, true);
 }
 
 function slug_to_path ($slug) {

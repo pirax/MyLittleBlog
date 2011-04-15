@@ -74,14 +74,15 @@ function entry_list ($mask=null, $sort_by='slug') {
     $list = glob (DB_PATH. (!is_null ($mask) ? "/$mask.txt" : '/*.txt'), GLOB_MARK);
     $ret = array ();
     foreach ($list as $entry_path) {
-        $entry = entry_read ($entry_path);
+        $slug  = substr (basename ($entry_path), 0, -4);
+        $entry = entry_read ($slug);
         $ret[] = array (
-            'subject'   => $entry['subject'],
-            'path'      => $entry_path,
-            'slug'      => substr (basename ($entry_path), 0, -4),
             'date_add'  => filectime ($entry_path),
             'date_mod'  => filemtime ($entry_path),
+            'path'      => $entry_path,
             'size'      => filesize ($entry_path),
+            'slug'      => $slug,
+            'subject'   => $entry['subject'],
         );
     }
 

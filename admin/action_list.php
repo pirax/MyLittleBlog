@@ -17,11 +17,13 @@ foreach ($entries as $entry) {
     <tr>
         <td>%d</td>
         <td>%s</td>
+        <td>%s</td>
         <td><a href='/?action=entry_edit&slug=%s'>edytuj</a></td>
     </tr>",
 
         ++$i,
         $entry['subject'],
+        $entry['date_add'],
         $entry['slug']
     );
 }

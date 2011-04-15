@@ -20,7 +20,7 @@ if (is_array ($entries) && count ($entries)) {
             <td>%d</td>
             <td>%s</td>
             <td>%s</td>
-            <td><a href='/?action=entry_edit&slug=%s'>edytuj</a></td>
+            <td><a href='/?action=edit&slug=%s'>edytuj</a></td>
         </tr>",
 
             ++$i,

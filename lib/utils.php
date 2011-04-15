@@ -27,8 +27,7 @@ function slug_to_path ($slug) {
 }
 
 function entry_add ($subject, $content) {
-    $fname = fname_encode ($subject);
-    $path  = DB_PATH . '/' . $fname .'.txt';
+    $path  = slug_to_path (slug ($subject));
     return file_put_contents ($path, $subject ."\n". $content);
 }
 
@@ -38,9 +37,13 @@ function entry_edit ($slug, $subject, $content) {
         return false;
     }
 
-    $fname = fname_encode ($subject);
-    $path  = DB_PATH . '/' . $fname .'.txt';
-    return rename ($path, $path);
+    $new_slug = slug ($subject);
+    if ($slug == $new_slug) {
+        return 1;
+    }
+
+    $new_path = slug_to_path ($new_slug);
+    return rename ($path, $new_path);
 }
 
 function entry_read ($slug) {

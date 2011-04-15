@@ -10,6 +10,7 @@
 <?php
 
 $entries = entry_list ();
+$i = 0;
 
 foreach ($entries as $entry) {
     printf ("
@@ -19,7 +20,7 @@ foreach ($entries as $entry) {
         <td><a href='/?action=entry_edit&slug=%s'>edytuj</a></td>
     </tr>",
 
-        $i,
+        ++$i,
         $entry['subject'],
         $entry['slug']
     );

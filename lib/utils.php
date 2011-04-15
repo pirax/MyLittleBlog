@@ -1,13 +1,13 @@
 <?php
 
-function slug ($string, $non_uniq=0) {
+function slug ($string, $non_uniq=false) {
     $string = strtr ($string, "ążśźęćńłóĄŻŚŹĘĆŃŁÓ \t\r\n", 'azszecnloAZSZECNLO____');
     $string = preg_replace ('/_{1,}/', '_', $string);
     $string = preg_replace ('/[^a-zA-Z0-9_,.-]/', '', $string);
 
     if (!$non_uniq) {
         $i = '';
-        while (file_exists (DB_PATH . $string . $i. '.txt')) {
+        while (file_exists (slug_to_path ($string . $i))) {
             ++$i;
         }
         if (is_numeric ($i) && $i > 0) {

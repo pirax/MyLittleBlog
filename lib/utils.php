@@ -42,7 +42,11 @@ function entry_list ($mask=null) {
     $ret = array ();
     foreach ($list as $entry_path) {
         $entry = entry_read ($entry_path);
-        $ret[] = array ('subject' => $entry['subject'], 'path' => $entry_path);
+        $ret[] = array (
+            'subject'   => $entry['subject'],
+            'path'      => $entry_path,
+            'slug'      => substr (basename ($entry_path), 0, -4),
+        );
     }
 
     return $ret;

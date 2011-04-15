@@ -18,10 +18,6 @@ function slug ($string, $non_uniq=false) {
     return $string;
 }
 
-function fname_encode ($subject) {
-    return slug ($subject, true);
-}
-
 function slug_to_path ($slug) {
     return DB_PATH . $slug . '.txt';
 }

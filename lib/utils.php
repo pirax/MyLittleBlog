@@ -4,6 +4,7 @@ function slug ($string) {
     $string = strtr ($string, "ążśźęćńłóĄŻŚŹĘĆŃŁÓ \t\r\n", 'azszecnloAZSZECNLO____');
     $string = preg_replace ('/_{1,}/', '_', $string);
     $string = preg_replace ('/[^a-zA-Z0-9_,.-]/', '', $string);
+    return $string;
 }
 
 function fname_encode ($subject) {

@@ -38,6 +38,12 @@ function entry_del ($entry) {
 }
 
 function entries_sorter ($field) {
+    echo "
+        if (\$a['$field'] == \$b['$field']) {
+            return 0;
+        }
+        return \$a['$field'] < \$b['$field'] ? 1 : -1;
+    ";
     return create_function ('$a, $b', "
         if (\$a['$field'] == \$b['$field']) {
             return 0;
@@ -59,7 +65,7 @@ function entry_list ($mask=null, $sort_by='slug') {
             'date_mod'  => filemtime ($entry_path),
         );
     }
-
+echo entries_sorter ('date_add');
     if ($sort_by != 'slug') {
         $ret = uasort ($ret, entries_sorter ($sort_by));
     }

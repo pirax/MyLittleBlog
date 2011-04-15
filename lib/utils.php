@@ -33,11 +33,12 @@ function entry_edit ($slug, $subject, $content) {
         return false;
     }
 
-    $new_slug = slug ($subject);
+    $new_slug = slug ($subject, true);
     if ($slug == $new_slug) {
         return 1;
     }
 
+    $new_slug = slug ($subject);
     $new_path = slug_to_path ($new_slug);
     return rename ($path, $new_path);
 }

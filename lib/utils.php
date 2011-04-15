@@ -46,6 +46,8 @@ function entry_list ($mask=null) {
             'subject'   => $entry['subject'],
             'path'      => $entry_path,
             'slug'      => substr (basename ($entry_path), 0, -4),
+            'date_add'  => filectime ($entry_path),
+            'date_mod'  => filemtime ($entry_path),
         );
     }
 

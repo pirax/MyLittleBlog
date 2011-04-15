@@ -34,7 +34,7 @@ function entry_edit ($slug, $subject, $content) {
     }
 
     $new_slug = slug ($subject, true);
-    echo "slug: $slug, new_slug: $new_slug";
+    echo "slug: $slug, new_slug: $new_slug";exit;
     if ($slug == $new_slug) {
         return 1;
     }

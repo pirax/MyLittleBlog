@@ -63,8 +63,8 @@ foreach ($errors as $error) {
 ?>
 </ul>
 <div>
-<label for="subject"><input type="text" name="subject" id="subject" value="<?php echo $subject; ?>" /></label><br />
-<label for="content"><textarea name="content" id="content"><?php echo $content; ?></textarea></label><br />
+<label for="subject"><input type="text" name="subject" id="subject" value="<?php echo $subject; ?>" /></label>
+<label for="content"><textarea name="content" id="content"><?php echo $content; ?></textarea></label>
 <input type="hidden" name="slug" value="<?php echo html ($_REQUEST['slug']) ?>" />
 <input type="submit" name="save" value="Zapisz" />
 </div>

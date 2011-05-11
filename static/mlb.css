@@ -1,0 +1,8 @@
+ul.errors li {
+    color: red;
+}
+
+ul.msg li {
+    color: green;
+}
+

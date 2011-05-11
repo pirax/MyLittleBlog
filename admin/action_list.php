@@ -5,6 +5,7 @@
         <td>Tytuł</td>
         <td>Data utworzenia</td>
         <td>Edytuj</td>
+        <td>Usuń</td>
     </tr>
 </thead>
 <tbody>
@@ -21,11 +22,13 @@ if (is_array ($entries) && count ($entries)) {
             <td>%s</td>
             <td>%s</td>
             <td><a href='/admin/?action=edit&slug=%s'>edytuj</a></td>
+            <td><a href='/admin/?action=del&slug=%s' onclick='return confirm (\"Jesteś pewien że chcesz usunąć ten wpis?\")'>usuń</a></td>
         </tr>",
 
             ++$i,
             $entry['subject'],
             strftime ('%Y-%m-%d %H:%M:%S', $entry['date_add']),
+            $entry['slug'],
             $entry['slug']
         );
     }

@@ -13,12 +13,8 @@ if (!file_exists ($path)) {
     exit;
 }
 
-if (@unlink ($path)) {
-    $_SESSION['msg'] = 'Wpis o identyfikatorze "'. html ($_GET['slug']) .'" został usunięty';
-}
-else {
-    $_SESSION['msg'] = 'Nie udało się usunąć wpisu o identyfikatorze "'. html ($_GET['slug']) .'"';
-}
+@unlink ($path);
+$_SESSION['msg'] = 'Wpis o identyfikatorze "'. html ($_GET['slug']) .'" został usunięty';
 
 header ('Location: /admin/');
 exit;

@@ -6,6 +6,7 @@ if (!ini_get ('session.auto_start')) {
 }
 
 define ('ROOT', dirname (dirname (__FILE__)));
+
 define ('DB_PATH', ROOT . '/db/');
 
 require ROOT . '/lib/utils.php';

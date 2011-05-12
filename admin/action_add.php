@@ -36,7 +36,7 @@ if (isset ($_POST['save'])) {
 <ul>
 <?php
 foreach ($errors as $error) {
-    echo "<li>$error</li>\n";
+    echo "<li>błąd: $error</li>\n";
 }
 ?>
 </ul>

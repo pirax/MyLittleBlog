@@ -22,14 +22,15 @@ function slug_to_path ($slug) {
     return DB_PATH . $slug . '.txt';
 }
 
-function entry_add ($subject, $content) {
+function entry_add ($subject, $content, $tags=array ()) {
     $path  = slug_to_path (slug ($subject));
-    return file_put_contents ($path, $subject ."\n". $content);
+    return file_put_contents ($path, $subject ."\n". (is_array ($tags) ? join (chr (0), $tags) : $tags) . "\n" . $content);
 }
 
-function entry_edit ($slug, $subject, $content) {
+function entry_edit ($slug, $subject, $content, $tags=array ()) {
     $path = slug_to_path ($slug);
-    if (!file_put_contents ($path, $subject ."\n". $content)) {
+    $tags = (is_array ($tags) ? join (chr (0), $tags) : $tags);
+    if (!file_put_contents ($path, $subject ."\n". $tags . "\n" . $content)) {
         return false;
     }
 
@@ -49,8 +50,8 @@ function entry_read ($slug) {
         return;
     }
     $data = file_get_contents ($path);
-    list ($subject, $content) = explode ("\n", $data, 2);
-    return array ('subject' => $subject, 'content' => $content);
+    list ($subject, $tags, $content) = explode ("\n", $data, 3);
+    return array ('subject' => $subject, 'content' => $content, 'tags' => (strlen ($tags) ? explode (chr (0), $tags) : array ()));
 }
 
 function entry_del ($slug) {
